@@ -10,7 +10,7 @@ class Dashboard extends React.Component{
         this.state={
             donations: [],
             pollingCount: 0,
-            delay: 2000,
+            delay: 5000,
             teamLeaders: [],
             oldDonations: [],
             bigDonation: null
@@ -19,7 +19,7 @@ class Dashboard extends React.Component{
     }
 
     componentDidMount(){
-        //this.interval = setInterval(this.poll, this.state.delay);
+        this.interval = setInterval(this.poll, this.state.delay);
         this.poll();
     }
 
@@ -29,7 +29,7 @@ class Dashboard extends React.Component{
 
     poll = () => {
         this.setState({pollingCount: this.state.pollingCount + 1, oldDonations: this.state.donations});
-        fetch('https://events.dancemarathon.com/api/events/4589/donations?limit=5')
+        fetch('https://events.dancemarathon.com/api/events/4723/donations?limit=5')
             .then(response => response.json())
             .then(data => {
                 this.setState({donations: data})
@@ -63,7 +63,7 @@ class Dashboard extends React.Component{
             <div className="countdown">
                 <span>🚀</span>
                 <Countdown date={new Date("Feb 26, 2022 23:45:00")} daysInHours={true}/>
-                <span style={{padding: 0}}> until Huskerthon blastoff!</span>
+                <span style={{padding: 0}}> until OMAthon reveal!</span>
                 <span>🚀</span>
             </div>
         </Row>
